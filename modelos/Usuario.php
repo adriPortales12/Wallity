@@ -96,4 +96,19 @@ class Usuario extends Crud{
             return false; // Usuario no encontrado o múltiples usuarios encontrados
         }
         }
+
+        function bucarUsuario($nombreUsuario){
+            $connection = $this->conectar();
+            $sql = "SELECT COUNT(*) AS count FROM usuarios WHERE nombre_usuario = :usuario";
+            $stmt = $connection->prepare($sql);
+            $stmt->bindParam(':usuario', $nombreUsuario);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $count = $result['count'];
+
+            if($count === 1){
+                return true;
+            }
+            return false;
+        }
 }

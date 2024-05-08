@@ -4,14 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="estilosLogin.css">
+    <link rel="stylesheet" href="\VirtualWalletSpending\vistas\estilos\dashboard.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Bienvenido al Dashboard</h1>
-        <div class="button-container">
-            <a href="/VirtualWalletSpending/logout">Cerrar sesión</a>
+    <header class="py-3">
+        <div class="container">
+            <h1>Dashboard</h1>
+            <nav>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link" href="#">Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Configuración</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/VirtualWalletSpending/logout">Cerrar sesión</a></li> 
+                </ul>
+            </nav>
         </div>
-    </div>
+    </header>
+    <main class="container my-4">
+        <section class="mb-4">
+            <h2>Resumen</h2>
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Aquí puedes agregar contenido de resumen utilizando las clases de Bootstrap.</p>
+                </div>
+            </div>
+        </section>
+        <section>
+            <h2>Actividades recientes</h2>
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">Aquí puedes agregar contenido de actividades recientes utilizando las clases de Bootstrap.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

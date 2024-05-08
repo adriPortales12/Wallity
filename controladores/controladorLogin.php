@@ -5,7 +5,7 @@ class ControladorLogin{
     }
 
     public function login(){
-        require_once "vistas/login.php";
+        require_once "vistas/usuarios/login.php";
     }
 
     public function verificarLogin(){
@@ -23,7 +23,7 @@ class ControladorLogin{
             $_SESSION['usuario'] = serialize($usuarioLogin);
             header('Location: /VirtualWalletSpending/dashboard');
         }else{
-            header('Location: /VirtualWalletSpending/');
+            header('Location: /VirtualWalletSpending/?err=1');
         }
     }
     public function cerrarSesion(){
