@@ -12,7 +12,7 @@
         <h2>Iniciar sesión</h2>
         <form class="login-form" action="/VirtualWalletSpending/login" method="post">
             <input type="text" name="usuario" placeholder="Usuario" required>
-            <input type="password" name="contraseña" placeholder="Contraseña" required>
+            <input type="password" name="contrasena" placeholder="Contraseña" required>
             <button type="submit" class="btn btn-primary">Iniciar sesión</button>
         </form>
         <div class="mt-3">

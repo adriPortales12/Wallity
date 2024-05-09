@@ -11,11 +11,11 @@
     <div class="login-container">
         <h2>Registro</h2>
         <form id="formularioRegistro" class="login-form" action="/VirtualWalletSpending/datosRegistro" method="post">
-            <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
-            <input type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Nombre de usuario" required>
-            <input type="password" id="contraseña" name="contraseña" placeholder="Contraseña" required>
-            <input type="password" id="contraseña2" name="contraseña2" placeholder="Repetir contraseña" required>
-            <button type="submit" id="botonRegistro" class="btn btn-primary">Iniciar sesión</button>
+            <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+            <input type="text" id="nombre_usuario" name="nombre_usuario" placeholder="Nombre de usuario">
+            <input type="password" id="contrasena" name="contrasena" placeholder="Contraseña">
+            <input type="password" id="contrasena2" name="contrasena2" placeholder="Repetir contraseña">
+            <button type="submit" id="botonRegistro" class="btn btn-primary">Registrarse</button>
         </form>
         <div class="mt-3">
             ¿Tienes una cuenta? <a href="/VirtualWalletSpending/">Iniciar Sesión</a>

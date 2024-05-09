@@ -18,8 +18,8 @@ class ControladorLogin{
         }
 
         $usuario = $_POST['usuario'];
-        $contraseña = $_POST['contraseña'];
-        if($usuarioLogin->verificaUsuario($usuario,$contraseña)){
+        $contrasena = $_POST['contrasena'];
+        if($usuarioLogin->verificaUsuario($usuario,$contrasena)){
             $_SESSION['usuario'] = serialize($usuarioLogin);
             header('Location: /VirtualWalletSpending/dashboard');
         }else{

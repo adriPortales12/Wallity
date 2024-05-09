@@ -18,7 +18,7 @@ class ControladorRegistro {
         }else{
             $nuevoUsuario->nombre = $_POST['nombre'];
             $nuevoUsuario->nombre_usuario = $_POST['nombre_usuario'];
-            $nuevoUsuario->contraseña = password_hash($_POST['contraseña'], PASSWORD_DEFAULT);
+            $nuevoUsuario->contrasena = password_hash($_POST['contrasena'], PASSWORD_DEFAULT);
             $nuevoUsuario->id_rol = 2;
             $nuevoUsuario->crear();
             header('Location: /VirtualWalletSpending/vistas/usuarios/registroMensaje.php');  
