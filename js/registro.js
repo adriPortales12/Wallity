@@ -1,5 +1,3 @@
-alert('El script se está ejecutando.');
-
 document.getElementById("formularioRegistro").addEventListener("submit", function(event) {
 
     let nombre = document.getElementById("nombre").value;

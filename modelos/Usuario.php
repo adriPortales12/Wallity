@@ -117,4 +117,26 @@ class Usuario extends Crud{
         public function __toString() {
             return "Usuario: [id={$this->id}, contrasena={$this->contrasena}, nombre_usuario={$this->nombre_usuario}, nombre={$this->nombre}, id_rol={$this->id_rol}]";
         }
+
+        function datosUsuario($nombreUsuario){
+            $connection = $this->conectar();
+            $sql = "SELECT * FROM usuarios WHERE nombre_usuario = :usuario";
+            $stmt = $connection->prepare($sql);
+            $stmt->bindParam(':usuario', $nombreUsuario);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if ($result) {
+                $usuario = new Usuario();
+                $usuario->id = $result['id'];
+                $usuario->nombre_usuario = $result['nombre_usuario'];
+                $usuario->contrasena = $result['contrasena'];
+                $usuario->nombre = $result['nombre'];
+                $usuario->id_rol = $result['id_rol'];
+                
+                return $usuario;
+            } else {
+                return null; // Usuario no encontrado
+            }
+        }
 }

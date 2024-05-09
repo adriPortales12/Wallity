@@ -1,9 +1,5 @@
 <?php
 
-if (isset($_GET['err'])) {
-    echo '<script>alert("Inicio de sesión fallido");</script>';
-}
-
 // Autoload de clases
 spl_autoload_register(function ($class_name) {
     include 'controladores/' . $class_name . '.php';

@@ -10,15 +10,16 @@
 <body>
     <div class="login-container">
         <h2>Iniciar sesión</h2>
-        <form class="login-form" action="/VirtualWalletSpending/login" method="post">
-            <input type="text" name="usuario" placeholder="Usuario" required>
-            <input type="password" name="contrasena" placeholder="Contraseña" required>
+        <form id="formularioLogin" class="login-form" action="/VirtualWalletSpending/login" method="post">
+            <input id="usuario" type="text" name="usuario" placeholder="Usuario">
+            <input type="password" name="contrasena" placeholder="Contraseña">
             <button type="submit" class="btn btn-primary">Iniciar sesión</button>
         </form>
         <div class="mt-3">
             ¿No tienes una cuenta? <a href="/VirtualWalletSpending/registro">Regístrate</a>
         </div>
     </div>
+    <script src="\VirtualWalletSpending\js\login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

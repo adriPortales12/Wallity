@@ -1,6 +1,6 @@
 <?php
 
-require_once "../base/Crud.php";
+require_once "base/Crud.php";
 
 class Rol extends Crud
 {

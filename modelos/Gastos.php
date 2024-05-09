@@ -1,5 +1,5 @@
 <?php
-require_once "../base/Crud.php";
+require_once "base/Crud.php";
 
 class Gastos extends Crud {
     private const TABLA = "gastos";
@@ -61,5 +61,16 @@ class Gastos extends Crud {
         $stmt->bindParam(':id_usuario', $this->id_usuario);
 
         $stmt->execute();
+    }
+
+    function datosGastos($nombre_usuario){
+        $connection = $this->conectar();
+
+        $sql = "SELECT g.* FROM gastos g INNER JOIN usuarios u ON g.id_usuario = u.id WHERE u.nombre_usuario = :nombre_usuario";
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }

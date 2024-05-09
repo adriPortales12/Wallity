@@ -20,10 +20,14 @@ class ControladorLogin{
         $usuario = $_POST['usuario'];
         $contrasena = $_POST['contrasena'];
         if($usuarioLogin->verificaUsuario($usuario,$contrasena)){
+            $_SESSION['user'] = $_POST['usuario'];
             $_SESSION['usuario'] = serialize($usuarioLogin);
             header('Location: /VirtualWalletSpending/dashboard');
         }else{
-            header('Location: /VirtualWalletSpending/?err=1');
+            
+            echo '<script>alert("Inicio de sesión fallido");</script>';
+            
+            require_once "vistas/usuarios/login.php";
         }
     }
     public function cerrarSesion(){

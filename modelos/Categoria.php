@@ -1,5 +1,5 @@
 <?php
-require_once "../base/Crud.php";
+require_once "base/Crud.php";
 
 class Categoria extends Crud {
     private const TABLA = "categorias";

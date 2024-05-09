@@ -22,7 +22,7 @@
     </header>
     <main class="container my-4">
         <section class="mb-4">
-            <h2>Resumen</h2>
+            <h2>Bienvenido <?php echo $_SESSION['user'] ?></h2>
             <div class="card">
                 <div class="card-body">
                     <p class="card-text">Aquí puedes agregar contenido de resumen utilizando las clases de Bootstrap.</p>
@@ -30,10 +30,14 @@
             </div>
         </section>
         <section>
-            <h2>Actividades recientes</h2>
+            <h2>Gastos Recientes</h2>
             <div class="card">
                 <div class="card-body">
-                    <p class="card-text">Aquí puedes agregar contenido de actividades recientes utilizando las clases de Bootstrap.</p>
+                    <ul class="list-group">
+                        <?php foreach ($datos_gastos as $gasto) : ?>
+                            <li class="list-group-item"><?php echo $gasto['titulo']; ?> - <?php echo $gasto['cantidad']; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
                 </div>
             </div>
         </section>
