@@ -22,12 +22,16 @@ class ControladorLogin{
         if($usuarioLogin->verificaUsuario($usuario,$contrasena)){
             $_SESSION['user'] = $_POST['usuario'];
             $_SESSION['usuario'] = serialize($usuarioLogin);
-            header('Location: /VirtualWalletSpending/dashboard');
+
+            $usuarioLogin = $usuarioLogin->datosUsuario($_POST['usuario']);
+            //guarda en el usuario los datos y si es admin (rol 1) va a un dashboard y si no al otro (rol 2)
+            if($usuarioLogin->id_rol==1){
+                header('Location: /VirtualWalletSpending/dashboardAdmin');
+            }else{
+                header('Location: /VirtualWalletSpending/dashboard');
+            }
         }else{
-            
-            echo '<script>alert("Inicio de sesión fallido");</script>';
-            
-            require_once "vistas/usuarios/login.php";
+            header('Location: /VirtualWalletSpending/?error=1');
         }
     }
     public function cerrarSesion(){

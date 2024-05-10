@@ -12,7 +12,8 @@
         <h2>Iniciar sesión</h2>
         <form id="formularioLogin" class="login-form" action="/VirtualWalletSpending/login" method="post">
             <input id="usuario" type="text" name="usuario" placeholder="Usuario">
-            <input type="password" name="contrasena" placeholder="Contraseña">
+            <p id="errorUsuario"></p>
+            <input id="contrasena" type="password" name="contrasena" placeholder="Contraseña">
             <button type="submit" class="btn btn-primary">Iniciar sesión</button>
         </form>
         <div class="mt-3">
