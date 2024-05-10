@@ -1,5 +1,4 @@
 <?php
-
 // Autoload de clases
 spl_autoload_register(function ($class_name) {
     include 'controladores/' . $class_name . '.php';
@@ -40,6 +39,11 @@ switch ($request_uri[0]) {
     case $base_url . '/dashboard':
          $controller = new ControladorDashboard();
          $controller->abrirDashboard();
+         break;
+
+     case $base_url . '/dashboardAdmin':
+         $controller = new ControladorDashboard();
+         $controller->abrirDashboardAdmin();
          break;
 
     default:
