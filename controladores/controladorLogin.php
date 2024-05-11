@@ -21,9 +21,10 @@ class ControladorLogin{
         $contrasena = $_POST['contrasena'];
         if($usuarioLogin->verificaUsuario($usuario,$contrasena)){
             $_SESSION['user'] = $_POST['usuario'];
-            $_SESSION['usuario'] = serialize($usuarioLogin);
+            
 
             $usuarioLogin = $usuarioLogin->datosUsuario($_POST['usuario']);
+            $_SESSION['usuario'] = serialize($usuarioLogin);
             //guarda en el usuario los datos y si es admin (rol 1) va a un dashboard y si no al otro (rol 2)
             if($usuarioLogin->id_rol==1){
                 header('Location: /VirtualWalletSpending/dashboardAdmin');

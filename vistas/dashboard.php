@@ -41,7 +41,6 @@
                         <th>Categoría</th>
                         <th>Cantidad</th>
                         <th>Fecha</th>
-                        <th>Editar</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,41 +49,50 @@
                             <td><?php echo $gasto['titulo']; ?></td>
                             <td><?php echo $gasto['nombre_categoria']; ?></td>
                             <td><?php echo $gasto['cantidad']; ?></td>
-                            <td><?php echo $gasto['fecha']; ?></td>
-                            <td><button id="editarGasto" class="btn btn-secondary">Editar</button></td>
+                            <td><?php echo $gasto['fecha_formateada']; ?></td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
     </div>
-</section>
-<div id="popupEditar" class="modal fade" tabindex="-1">
+<div class="container">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+        <button id="openPopupBtn" class="btn btn-primary mt-3 nuevoGasto">Añadir Gasto</button>
+    </div>
+</div>
+<div class="modal" id="popupModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar Gasto</h5>
+                    <h5 class="modal-title">Formulario en Popup</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="formEditarGasto">
+                    
+                    <form action="/VirtualWalletSpending/nuevoGasto" method="post">
+                        
                         <div class="mb-3">
-                            <label for="tituloGasto" class="form-label">Título:</label>
-                            <input type="text" class="form-control" id="tituloGasto" name="tituloGasto" required>
+                            <label for="Titulo" class="form-label">Titulo:</label>
+                            <input type="text" class="form-control" id="titulo" name="titulo">
                         </div>
                         <div class="mb-3">
-                            <label for="cantidadGasto" class="form-label">Cantidad:</label>
-                            <input type="number" class="form-control" id="cantidadGasto" name="cantidadGasto" required>
+                            <label for="categoria" class="form-label">Categoría:</label>
+                            <input type="number" class="form-control" id="categoria" name="categoria">
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                        <div class="mb-3">
+                            <label for="cantidad" class="form-label">Cantidad:</label>
+                            <input type="text" class="form-control" id="cantidad" name="cantidad">
+                        </div>
+                        
+                        <button id="enviarGasto" type="submit" class="btn btn-primary">Enviar</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-
+</section>
     </main>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="\VirtualWalletSpending\js\dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
