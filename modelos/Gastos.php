@@ -66,11 +66,12 @@ class Gastos extends Crud {
     function datosGastos($nombre_usuario){
         $connection = $this->conectar();
 
-        $sql = "SELECT g.*, c.nombre AS nombre_categoria 
+        $sql = "SELECT g.*, c.nombre AS nombre_categoria, DATE_FORMAT(g.fecha, '%d-%m-%Y') AS fecha_formateada 
         FROM gastos g 
         INNER JOIN usuarios u ON g.id_usuario = u.id 
         INNER JOIN categorias c ON g.id_categoria = c.id
-        WHERE u.nombre_usuario = :nombre_usuario";
+        WHERE u.nombre_usuario = :nombre_usuario
+        ORDER BY g.fecha DESC";
         $stmt = $connection->prepare($sql);
         $stmt->bindParam(':nombre_usuario', $nombre_usuario);
         $stmt->execute();
@@ -98,4 +99,12 @@ class Gastos extends Crud {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function __toString() {
+        return "ID: " . $this->id . "\n" .
+               "Título: " . $this->titulo . "\n" .
+               "ID Categoría: " . $this->id_categoria . "\n" .
+               "Cantidad: " . $this->cantidad . "\n" .
+               "Fecha: " . $this->fecha . "\n" .
+               "ID Usuario: " . $this->id_usuario . "\n";
+    }
 }
