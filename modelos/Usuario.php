@@ -68,6 +68,46 @@ class Usuario extends Crud{
 
     $stmt->execute();
     }
+
+    public function actualizarNombres()
+{
+    try {
+        $connection = $this->conectar();
+
+        $sql = "UPDATE usuarios SET nombre_usuario = :nombre_usuario, nombre = :nombre
+             WHERE id = :id";
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':nombre_usuario', $this->nombre_usuario);
+        $stmt->bindParam(':nombre', $this->nombre);
+
+
+        $stmt->execute();
+        
+    } catch (PDOException $e) {
+       
+        echo "Error SQL: " . $e->getMessage();
+    }
+}
+
+public function actualizarContrasena(){
+    try {
+        $connection = $this->conectar();
+
+        $sql = "UPDATE usuarios SET contrasena = :contrasena
+             WHERE id = :id";
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':contrasena', $this->contrasena);
+
+        $stmt->execute();
+        
+    } catch (PDOException $e) {
+       
+        echo "Error SQL: " . $e->getMessage();
+    }
+}
+
     public function verificaUsuario($usuario, $contrasena)
     {
         $connection = $this->conectar();

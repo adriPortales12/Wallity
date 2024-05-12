@@ -46,11 +46,24 @@ switch ($request_uri[0]) {
          $controller->abrirDashboardAdmin();
          break;
 
-         case $base_url . '/nuevoGasto':
-          $controller = new ControladorNuevoGasto();
-          $controller->nuevoGasto();
-          break;
+     case $base_url . '/nuevoGasto':
+         $controller = new ControladorNuevoGasto();
+         $controller->nuevoGasto();
+         break;
 
+     case $base_url . '/perfil':
+         $controller = new ControladorPerfil();
+         $controller->abrirPerfil();
+         break;
+     case $base_url . '/cambioNombres':
+         $controller = new ControladorPerfil();
+         $controller->cambioNombres();
+         break;
+
+     case $base_url . '/cambioContrasena':
+         $controller = new ControladorPerfil();
+         $controller->cambioContrasena();
+         break;
     default:
          header('HTTP/1.0 404 Not Found');
          echo 'Página no encontrada';

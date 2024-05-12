@@ -48,4 +48,29 @@ class Categoria extends Crud {
 
         $stmt->execute();
     }
+
+    public function listaCategorias() {
+        $connection = $this->conectar();
+    
+        $sql = "SELECT id, nombre FROM categorias";
+        $stmt = $connection->prepare($sql);
+        $stmt->execute();
+        
+        $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+        return $categorias;
+    }
+
+    public function buscaId($nombre) {
+    $connection = $this->conectar();
+
+    $sql = "SELECT id FROM categorias WHERE nombre = :nombre";
+    $stmt = $connection->prepare($sql);
+    $stmt->bindParam(':nombre', $nombre);
+    $stmt->execute();
+
+    $id = $stmt->fetchColumn(); // Obtiene directamente el valor de la columna ID
+
+    return $id;
+    }  
 }
