@@ -22,38 +22,19 @@
     </header>
     <main class="container my-4">
         <section class="mb-4">
-            <h2>Bienvenido <?php echo $_SESSION['user'] ?></h2>
+            <h2>Bienvenido, <?php echo $_SESSION['user'] ?></h2>
             <div class="card">
                 <div class="card-body">
-                    <h3>Gastos del mes</h3>
-                    <p class="card-text"><?php echo $gastosMes[0]['total_gastos'] . '€ gastados desde ' . $fecha_ultimo_mes; ?></p>
+                    <h3>a</h3>
+                        <p class="card-text"></p>
                 </div>
             </div>
         </section>
         <section>
-    <h2>Gastos</h2>
+    <h2>a</h2>
     <div class="card">
         <div class="card-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Categoría</th>
-                        <th>Cantidad</th>
-                        <th>Fecha</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($datos_gastos as $gasto) : ?>
-                        <tr>
-                            <td><?php echo $gasto['titulo']; ?></td>
-                            <td><?php echo $gasto['nombre_categoria']; ?></td>
-                            <td><?php echo $gasto['cantidad']; ?></td>
-                            <td><?php echo $gasto['fecha']; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+            
         </div>
     </div>
 </section>

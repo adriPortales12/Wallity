@@ -78,6 +78,28 @@ class Gastos extends Crud {
     
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    function gastosMes($nombre_usuario){
+        $connection = $this->conectar();
+    
+        $fecha_hace_30_dias = date('Y-m-d', strtotime('-1 month'));
+    
+        $sql = "SELECT g.*, c.nombre AS nombre_categoria, DATE_FORMAT(g.fecha, '%d-%m-%Y') AS fecha_formateada 
+                FROM gastos g 
+                INNER JOIN usuarios u ON g.id_usuario = u.id 
+                INNER JOIN categorias c ON g.id_categoria = c.id
+                WHERE u.nombre_usuario = :nombre_usuario
+                AND g.fecha >= :fecha_limite
+                ORDER BY g.fecha DESC";
+    
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario);
+        $stmt->bindParam(':fecha_limite', $fecha_hace_30_dias); 
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     function totalGasto($nombre_usuario){
         $connection = $this->conectar();
     

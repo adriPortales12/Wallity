@@ -13,25 +13,56 @@
             <h1>Dashboard</h1>
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="#">Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="\VirtualWalletSpending\perfil">Perfil</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">Configuración</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/VirtualWalletSpending/logout">Cerrar sesión</a></li> 
+                    <li class="nav-item"><a id="logout" class="nav-link" href="/VirtualWalletSpending/logout">Cerrar sesión</a></li> 
                 </ul>
             </nav>
         </div>
     </header>
     <main class="container my-4">
         <section class="mb-4">
-            <h2>Bienvenido <?php echo $_SESSION['user'] ?></h2>
+            <h2>Bienvenido, <?php echo $_SESSION['user'] ?></h2>
             <div class="card">
                 <div class="card-body">
                     <h3>Gastos del mes:</h3>
                     <p class="card-text p-3"><?php echo (isset($gastosMes[0]['total_gastos']) ? $gastosMes[0]['total_gastos'] : 0) . '€ gastados desde ' . $fecha_ultimo_mes; ?></p>
                 </div>
             </div>
+            <div class="container">
+                <div class="col-12 d-flex align-items-center justify-content-center">
+                    <button id="openPopupBtn" class="btn btn-primary mt-3 nuevoGasto">Añadir Gasto</button>
+                </div>
+            </div>
         </section>
         <section>
-    <h2>Gastos</h2>
+        
+    <h2>Este mes</h2>
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Categoría</th>
+                        <th>Cantidad</th>
+                        <th>Fecha</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($datos_gastos_mes as $gasto) : ?>
+                        <tr>
+                            <td><?php echo $gasto['titulo']; ?></td>
+                            <td><?php echo $gasto['nombre_categoria']; ?></td>
+                            <td><?php echo $gasto['cantidad']; ?>€</td>
+                            <td><?php echo $gasto['fecha_formateada']; ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h2 class="mt-4">Todos los gastos</h2>
     <div class="card">
         <div class="card-body">
             <table class="table">
@@ -48,7 +79,7 @@
                         <tr>
                             <td><?php echo $gasto['titulo']; ?></td>
                             <td><?php echo $gasto['nombre_categoria']; ?></td>
-                            <td><?php echo $gasto['cantidad']; ?></td>
+                            <td><?php echo $gasto['cantidad']; ?>€</td>
                             <td><?php echo $gasto['fecha_formateada']; ?></td>
                         </tr>
                     <?php endforeach; ?>
@@ -56,11 +87,7 @@
             </table>
         </div>
     </div>
-<div class="container">
-    <div class="col-12 d-flex align-items-center justify-content-center">
-        <button id="openPopupBtn" class="btn btn-primary mt-3 nuevoGasto">Añadir Gasto</button>
-    </div>
-</div>
+
 <div class="modal" id="popupModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -70,23 +97,27 @@
                 </div>
                 <div class="modal-body">
                     
-                    <form action="/VirtualWalletSpending/nuevoGasto" method="post">
-                        
-                        <div class="mb-3">
-                            <label for="Titulo" class="form-label">Titulo:</label>
-                            <input type="text" class="form-control" id="titulo" name="titulo">
-                        </div>
-                        <div class="mb-3">
-                            <label for="categoria" class="form-label">Categoría:</label>
-                            <input type="number" class="form-control" id="categoria" name="categoria">
-                        </div>
-                        <div class="mb-3">
-                            <label for="cantidad" class="form-label">Cantidad:</label>
-                            <input type="text" class="form-control" id="cantidad" name="cantidad">
-                        </div>
-                        
-                        <button id="enviarGasto" type="submit" class="btn btn-primary">Enviar</button>
-                    </form>
+                <form id="formularioGasto" action="/VirtualWalletSpending/nuevoGasto" method="post">
+                    <div class="mb-3">
+                        <label for="titulo" class="form-label">Titulo:</label>
+                        <input type="text" class="form-control" id="titulo" name="titulo">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="categoria" class="form-label">Categoría:</label>
+                        <select class="form-control" id="categoria" name="categoria">
+                            <?php foreach ($listaCategorias as $categoria) { ?>
+                                <option value="<?php echo $categoria['nombre']; ?>"><?php echo $categoria['nombre']; ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="cantidad" class="form-label">Cantidad:</label>
+                        <input type="text" class="form-control" id="cantidad" name="cantidad">
+                    </div>
+                    <button id="enviarGasto" type="submit" class="btn btn-primary">Enviar</button>
+                </form>
                 </div>
             </div>
         </div>
