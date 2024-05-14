@@ -64,6 +64,11 @@ switch ($request_uri[0]) {
          $controller = new ControladorPerfil();
          $controller->cambioContrasena();
          break;
+
+    case $base_url . '/borraGasto':
+         $controller = new controladorBorrarGasto();
+         $controller->borrarGasto();
+         break;
     default:
          header('HTTP/1.0 404 Not Found');
          echo 'Página no encontrada';

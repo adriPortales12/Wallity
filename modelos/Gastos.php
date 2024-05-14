@@ -79,6 +79,27 @@ class Gastos extends Crud {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function gastosDia($nombre_usuario){
+        $connection = $this->conectar();
+    
+        $fecha_hace_1_dia = date('Y-m-d', strtotime('-1 day'));
+    
+        $sql = "SELECT g.*, c.nombre AS nombre_categoria, DATE_FORMAT(g.fecha, '%d-%m-%Y') AS fecha_formateada 
+                FROM gastos g 
+                INNER JOIN usuarios u ON g.id_usuario = u.id 
+                INNER JOIN categorias c ON g.id_categoria = c.id
+                WHERE u.nombre_usuario = :nombre_usuario
+                AND g.fecha >= :fecha_limite
+                ORDER BY g.fecha DESC";
+    
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario);
+        $stmt->bindParam(':fecha_limite', $fecha_hace_1_dia); 
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     function gastosMes($nombre_usuario){
         $connection = $this->conectar();
     
@@ -99,8 +120,50 @@ class Gastos extends Crud {
     
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    function gastosAnio($nombre_usuario){
+        $connection = $this->conectar();
     
-    function totalGasto($nombre_usuario){
+        $fecha_hace_1_anio = date('Y-m-d', strtotime('-1 year'));
+    
+        $sql = "SELECT g.*, c.nombre AS nombre_categoria, DATE_FORMAT(g.fecha, '%d-%m-%Y') AS fecha_formateada 
+                FROM gastos g 
+                INNER JOIN usuarios u ON g.id_usuario = u.id 
+                INNER JOIN categorias c ON g.id_categoria = c.id
+                WHERE u.nombre_usuario = :nombre_usuario
+                AND g.fecha >= :fecha_limite
+                ORDER BY g.fecha DESC";
+    
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario);
+        $stmt->bindParam(':fecha_limite', $fecha_hace_1_anio); 
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function totalGastoDia($nombre_usuario){
+        $connection = $this->conectar();
+    
+        // Obtener la fecha de hace 30 días
+        $fecha_hace_1_dia = date('Y-m-d', strtotime('-1 day'));
+    
+        // Consulta SQL para obtener la suma de los gastos en los últimos 30 días
+        $sql = "SELECT SUM(g.cantidad) AS total_gastos 
+        FROM gastos g 
+        INNER JOIN usuarios u ON g.id_usuario = u.id 
+        WHERE u.nombre_usuario = :nombre_usuario 
+        AND g.fecha >= :fecha_limite";
+    
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario);
+        $stmt->bindParam(':fecha_limite', $fecha_hace_1_dia);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    function totalGastoMes($nombre_usuario){
         $connection = $this->conectar();
     
         // Obtener la fecha de hace 30 días
@@ -116,6 +179,27 @@ class Gastos extends Crud {
         $stmt = $connection->prepare($sql);
         $stmt->bindParam(':nombre_usuario', $nombre_usuario);
         $stmt->bindParam(':fecha_limite', $fecha_hace_30_dias);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    function totalGastoAnio($nombre_usuario){
+        $connection = $this->conectar();
+    
+        // Obtener la fecha de hace 30 días
+        $fecha_hace_1_anio = date('Y-m-d', strtotime('-1 year'));
+    
+        // Consulta SQL para obtener la suma de los gastos en los últimos 30 días
+        $sql = "SELECT SUM(g.cantidad) AS total_gastos 
+        FROM gastos g 
+        INNER JOIN usuarios u ON g.id_usuario = u.id 
+        WHERE u.nombre_usuario = :nombre_usuario 
+        AND g.fecha >= :fecha_limite";
+    
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario);
+        $stmt->bindParam(':fecha_limite', $fecha_hace_1_anio);
         $stmt->execute();
     
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
