@@ -26,7 +26,21 @@
             <div class="card">
                 <div class="card-body">
                     <h3>Gastos del mes:</h3>
-                    <p class="card-text p-3"><?php echo (isset($gastosMes[0]['total_gastos']) ? $gastosMes[0]['total_gastos'] : 0) . '€ gastados desde ' . $fecha_ultimo_mes; ?></p>
+                    <p class="card-text p-3"><?php echo (isset($gastosSuma[0]['total_gastos']) ? $gastosSuma[0]['total_gastos'] : 0) . '€ gastados desde ' . $fecha_ultimo_filtro; ?></p>
+                </div>
+                <div class="col-2 mb-3 mx-3">
+                <form action="/VirtualWalletSpending/dashboard" method="get">
+                    <div class="mb-3">
+                        <label for="filtro" class="form-label">Filtrar por:</label>
+                        <select class="form-control" id="filtro" name="filtro">
+                            <option value="mes" <?php echo $_GET['filtro']=='mes' ? 'selected' : '' ?> >Mes</option>
+                            <option value="anio"  <?php echo $_GET['filtro']=='anio' ? 'selected' : '' ?>  >Año</option>
+                            <option value="dia"  <?php echo $_GET['filtro']=='dia' ? 'selected' : '' ?>  >Día</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Filtrar</button>
+                </form>
                 </div>
             </div>
             <div class="container">
@@ -37,54 +51,76 @@
         </section>
         <section>
         
-    <h2>Este mes</h2>
+    <h2>Este <?php echo $_GET['filtro']=='anio' ? 'año' : $_GET['filtro'] ?></h2>
     <div class="card">
         <div class="card-body">
-            <table class="table">
-                <thead>
+        <?php if (!empty($datos_gastos_filtro)) : ?>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Categoría</th>
+                    <th>Cantidad</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($datos_gastos_filtro as $gasto) : ?>
                     <tr>
-                        <th>Título</th>
-                        <th>Categoría</th>
-                        <th>Cantidad</th>
-                        <th>Fecha</th>
+                        <td><?php echo $gasto['titulo']; ?></td>
+                        <td><?php echo $gasto['nombre_categoria']; ?></td>
+                        <td><?php echo $gasto['cantidad']; ?>€</td>
+                        <td><?php echo $gasto['fecha_formateada']; ?></td>
+                        <td>
+                            <form method="post" action="/VirtualWalletSpending/borraGasto">
+                                <input type="hidden" name="id" value="<?php echo $gasto['id']; ?>">
+                                <input type="hidden" name="filtro" value="<?php echo $_GET['filtro']; ?>">
+                                <button type="submit" class="borrar-btn btn btn-danger">Borrar</button>
+                            </form>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($datos_gastos_mes as $gasto) : ?>
-                        <tr>
-                            <td><?php echo $gasto['titulo']; ?></td>
-                            <td><?php echo $gasto['nombre_categoria']; ?></td>
-                            <td><?php echo $gasto['cantidad']; ?>€</td>
-                            <td><?php echo $gasto['fecha_formateada']; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else : ?>
+        <p>No hay ningún gasto.</p>
+    <?php endif; ?>
         </div>
     </div>
     <h2 class="mt-4">Todos los gastos</h2>
     <div class="card">
         <div class="card-body">
-            <table class="table">
-                <thead>
+        <?php if (!empty($datos_gastos)) : ?>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Categoría</th>
+                    <th>Cantidad</th>
+                    <th>Fecha</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($datos_gastos as $gasto) : ?>
                     <tr>
-                        <th>Título</th>
-                        <th>Categoría</th>
-                        <th>Cantidad</th>
-                        <th>Fecha</th>
+                        <td><?php echo $gasto['titulo']; ?></td>
+                        <td><?php echo $gasto['nombre_categoria']; ?></td>
+                        <td><?php echo $gasto['cantidad']; ?>€</td>
+                        <td><?php echo $gasto['fecha_formateada']; ?></td>
+                        <td>
+                            <form method="post" action="/VirtualWalletSpending/borraGasto">
+                                <input type="hidden" name="id" value="<?php echo $gasto['id']; ?>">
+                                <input type="hidden" name="filtro" value="<?php echo $_GET['filtro']; ?>">
+                                <button type="submit" class="borrar-btn btn btn-danger">Borrar</button>
+                            </form>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($datos_gastos as $gasto) : ?>
-                        <tr>
-                            <td><?php echo $gasto['titulo']; ?></td>
-                            <td><?php echo $gasto['nombre_categoria']; ?></td>
-                            <td><?php echo $gasto['cantidad']; ?>€</td>
-                            <td><?php echo $gasto['fecha_formateada']; ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                </tbody>
-            </table>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else : ?>
+        <p>No hay ningún gasto.</p>
+    <?php endif; ?>
         </div>
     </div>
 

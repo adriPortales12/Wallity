@@ -23,7 +23,7 @@ class ControladorNuevoGasto{
 
         $nuevoGasto->crear();
 
-        header('Location: /VirtualWalletSpending/dashboard');
+        header('Location: /VirtualWalletSpending/dashboard?filtro=mes');
     }
 
 }
