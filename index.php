@@ -69,6 +69,10 @@ switch ($request_uri[0]) {
          $controller = new controladorBorrarGasto();
          $controller->borrarGasto();
          break;
+     case $base_url . '/modificaGasto':
+         $controller = new controladorModificarGasto();
+         $controller->modificarGasto();
+          break;
     default:
          header('HTTP/1.0 404 Not Found');
          echo 'Página no encontrada';
