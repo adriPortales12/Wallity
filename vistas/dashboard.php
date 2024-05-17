@@ -25,7 +25,7 @@
             <h2>Bienvenido, <?php echo $_SESSION['user'] ?></h2>
             <div class="card">
                 <div class="card-body">
-                    <h3>Gastos del mes:</h3>
+                    <h3>Gastos del <?php echo $_GET['filtro']=='anio' ? 'año' : $_GET['filtro'] ?>:</h3>
                     <p class="card-text p-3"><?php echo (isset($gastosSuma[0]['total_gastos']) ? $gastosSuma[0]['total_gastos'] : 0) . '€ gastados desde ' . $fecha_ultimo_filtro; ?></p>
                 </div>
                 <div class="col-2 mb-3 mx-3">
@@ -71,6 +71,11 @@
                         <td><?php echo $gasto['nombre_categoria']; ?></td>
                         <td><?php echo $gasto['cantidad']; ?>€</td>
                         <td><?php echo $gasto['fecha_formateada']; ?></td>
+                        <td><button class="modificar-btn btn btn-warning"
+                            data-id="<?php echo $gasto['id']; ?>" data-titulo="<?php echo $gasto['titulo']; ?>"
+                            data-categoria="<?php echo $gasto['nombre_categoria']; ?>"
+                            data-cantidad="<?php echo $gasto['cantidad']; ?>">
+                            Modificar</button></td>
                         <td>
                             <form method="post" action="/VirtualWalletSpending/borraGasto">
                                 <input type="hidden" name="id" value="<?php echo $gasto['id']; ?>">
@@ -107,6 +112,11 @@
                         <td><?php echo $gasto['nombre_categoria']; ?></td>
                         <td><?php echo $gasto['cantidad']; ?>€</td>
                         <td><?php echo $gasto['fecha_formateada']; ?></td>
+                        <td><button class="modificar-btn btn btn-warning"
+                            data-id="<?php echo $gasto['id']; ?>" data-titulo="<?php echo $gasto['titulo']; ?>"
+                            data-categoria="<?php echo $gasto['nombre_categoria']; ?>"
+                            data-cantidad="<?php echo $gasto['cantidad']; ?>">
+                            Modificar</button></td>
                         <td>
                             <form method="post" action="/VirtualWalletSpending/borraGasto">
                                 <input type="hidden" name="id" value="<?php echo $gasto['id']; ?>">
@@ -123,7 +133,7 @@
     <?php endif; ?>
         </div>
     </div>
-
+<!-- Popup para añadir gasto -->
 <div class="modal" id="popupModal">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -159,6 +169,41 @@
         </div>
     </div>
 </section>
+<!-- Popup para modificar gasto -->
+<div class="modal" id="modificarModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Modificar Gasto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="modificarGastoForm" action="/VirtualWalletSpending/modificaGasto" method="post">
+                        <input type="hidden" id="modificar-id" name="id">
+                        <div class="mb-3">
+                            <label for="modificar-titulo" class="form-label">Título:</label>
+                            <input type="text" class="form-control" id="modificar-titulo" name="titulo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="modificar-categoria" class="form-label">Categoría:</label>
+                            <select class="form-control" id="modificar-categoria" name="categoria">
+                                <?php foreach ($listaCategorias as $categoria) { ?>
+                                    <option value="<?php echo $categoria['nombre']; ?>"><?php echo $categoria['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="modificar-cantidad" class="form-label">Cantidad:</label>
+                            <input type="text" class="form-control" id="modificar-cantidad" name="cantidad">
+                        </div>
+                        <input type="hidden" name="filtro" value="<?php echo $_GET['filtro']; ?>">
+                        
+                        <button type="submit" class="btn btn-primary">Modificar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     </main>
     <script src="\VirtualWalletSpending\js\dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

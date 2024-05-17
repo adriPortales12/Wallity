@@ -49,16 +49,13 @@ class Gastos extends Crud {
     public function actualizar() {
         $connection = $this->conectar();
 
-        $sql = "UPDATE gastos SET titulo = :titulo, id_categoria = :id_categoria,
-                cantidad = :cantidad, fecha = :fecha, id_usuario = :id_usuario
+        $sql = "UPDATE gastos SET titulo = :titulo, id_categoria = :id_categoria, cantidad = :cantidad
                 WHERE id = :id";
         $stmt = $connection->prepare($sql);
         $stmt->bindParam(':id', $this->id);
         $stmt->bindParam(':titulo', $this->titulo);
         $stmt->bindParam(':id_categoria', $this->id_categoria);
         $stmt->bindParam(':cantidad', $this->cantidad);
-        $stmt->bindParam(':fecha', $this->fecha);
-        $stmt->bindParam(':id_usuario', $this->id_usuario);
 
         $stmt->execute();
     }
