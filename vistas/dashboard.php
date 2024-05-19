@@ -14,46 +14,60 @@
             <nav>
                 <ul class="nav">
                     <li class="nav-item"><a class="nav-link" href="\VirtualWalletSpending\perfil">Perfil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Configuración</a></li>
+                    <li class="nav-item"><a class="nav-link" href="\VirtualWalletSpending\configuracion">Configuración</a></li>
                     <li class="nav-item"><a id="logout" class="nav-link" href="/VirtualWalletSpending/logout">Cerrar sesión</a></li> 
                 </ul>
             </nav>
         </div>
     </header>
     <main class="container my-4">
-        <section class="mb-4">
-            <h2>Bienvenido, <?php echo $_SESSION['user'] ?></h2>
+    <section class="mb-4">
+    <h2>Bienvenido, <?php echo $_SESSION['user'] ?></h2>
+    <div class="row">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
                     <h3>Gastos del <?php echo $_GET['filtro']=='anio' ? 'año' : $_GET['filtro'] ?>:</h3>
-                    <p class="card-text p-3"><?php echo (isset($gastosSuma[0]['total_gastos']) ? $gastosSuma[0]['total_gastos'] : 0) . '€ gastados desde ' . $fecha_ultimo_filtro; ?></p>
+                    <p id="gastosSumaValue" class="card-text p-3"><?php echo (isset($gastosSuma[0]['total_gastos']) ? $gastosSuma[0]['total_gastos'] : 0) . '€ gastados desde ' . $fecha_ultimo_filtro; ?></p>
                 </div>
                 <div class="col-2 mb-3 mx-3">
-                <form action="/VirtualWalletSpending/dashboard" method="get">
-                    <div class="mb-3">
-                        <label for="filtro" class="form-label">Filtrar por:</label>
-                        <select class="form-control" id="filtro" name="filtro">
-                            <option value="mes" <?php echo $_GET['filtro']=='mes' ? 'selected' : '' ?> >Mes</option>
-                            <option value="anio"  <?php echo $_GET['filtro']=='anio' ? 'selected' : '' ?>  >Año</option>
-                            <option value="dia"  <?php echo $_GET['filtro']=='dia' ? 'selected' : '' ?>  >Día</option>
-                        </select>
-                    </div>
+                    <form action="/VirtualWalletSpending/dashboard" method="get">
+                        <div class="mb-3">
+                            <label for="filtro" class="form-label">Filtrar por:</label>
+                            <select class="form-control" id="filtro" name="filtro">
+                                <option value="mes" <?php echo $_GET['filtro']=='mes' ? 'selected' : '' ?> >Mes</option>
+                                <option value="anio"  <?php echo $_GET['filtro']=='anio' ? 'selected' : '' ?>  >Año</option>
+                                <option value="dia"  <?php echo $_GET['filtro']=='dia' ? 'selected' : '' ?>  >Día</option>
+                            </select>
+                        </div>
+                        <input type="hidden" name="limite" value=<?php echo $usuarioLogin->limite ?>>
+                        <button type="submit" class="btn btn-primary">Filtrar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                <h3>Contenido:</h3>
+                    <p>contenido</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col-12 d-flex align-items-center justify-content-center">
+            <button id="openPopupBtn" class="btn btn-primary mt-3 nuevoGasto">Añadir Gasto</button>
+        </div>
+    </div>
+</section>
 
-                    <button type="submit" class="btn btn-primary">Filtrar</button>
-                </form>
-                </div>
-            </div>
-            <div class="container">
-                <div class="col-12 d-flex align-items-center justify-content-center">
-                    <button id="openPopupBtn" class="btn btn-primary mt-3 nuevoGasto">Añadir Gasto</button>
-                </div>
-            </div>
-        </section>
-        <section>
+<section>
         
-    <h2>Este <?php echo $_GET['filtro']=='anio' ? 'año' : $_GET['filtro'] ?></h2>
+    
     <div class="card">
         <div class="card-body">
+        <h2>Este <?php echo $_GET['filtro']=='anio' ? 'año' : $_GET['filtro'] ?></h2>
         <?php if (!empty($datos_gastos_filtro)) : ?>
         <table class="table">
             <thead>
@@ -62,6 +76,8 @@
                     <th>Categoría</th>
                     <th>Cantidad</th>
                     <th>Fecha</th>
+                    <th>Acciones</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -92,9 +108,9 @@
     <?php endif; ?>
         </div>
     </div>
-    <h2 class="mt-4">Todos los gastos</h2>
-    <div class="card">
+    <div class="card mt-5">
         <div class="card-body">
+        <h2 class="mt-4">Todos los gastos</h2>
         <?php if (!empty($datos_gastos)) : ?>
         <table class="table">
             <thead>
@@ -103,6 +119,8 @@
                     <th>Categoría</th>
                     <th>Cantidad</th>
                     <th>Fecha</th>
+                    <th>Acciones</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -133,8 +151,8 @@
     <?php endif; ?>
         </div>
     </div>
-<!-- Popup para añadir gasto -->
-<div class="modal" id="popupModal">
+    <!-- Popup para añadir gasto -->
+    <div class="modal" id="popupModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

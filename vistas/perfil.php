@@ -13,7 +13,7 @@
             <h1>Perfil</h1>
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="/VirtualWalletSpending/dashboard?filtro=mes">Volver al Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/VirtualWalletSpending/dashboard?filtro=mes&limite=<?php echo $usuario->limite ?>">Volver al Dashboard</a></li>
                     <li class="nav-item"><a id="logout" class="nav-link" href="/VirtualWalletSpending/logout">Cerrar sesión</a></li> 
                 </ul>
             </nav>

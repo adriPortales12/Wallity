@@ -29,7 +29,7 @@ class ControladorLogin{
             if($usuarioLogin->id_rol==1){
                 header('Location: /VirtualWalletSpending/dashboardAdmin');
             }else{
-                header('Location: /VirtualWalletSpending/dashboard?filtro=mes');
+                header('Location: /VirtualWalletSpending/dashboard?filtro=mes&limite=' . $usuarioLogin->limite);
             }
         }else{
             header('Location: /VirtualWalletSpending/?error=1');
