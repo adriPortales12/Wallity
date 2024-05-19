@@ -9,6 +9,7 @@ class Usuario extends Crud{
     private $nombre_usuario;
     private $contrasena;
     private $nombre;
+    private $limite;
     private $id_rol;
 
 
@@ -57,7 +58,7 @@ class Usuario extends Crud{
     {
     $connection = $this->conectar();
 
-    $sql = "UPDATE usuarios SET nombre_usuario = :nombre_usuario, contrasena = :contrasena, nombre = :nombre, id_rol = :id_rol
+    $sql = "UPDATE usuarios SET nombre_usuario = :nombre_usuario, contrasena = :contrasena, nombre = :nombre, id_rol = :id_rol, limite = :limite
          WHERE id = :id";
     $stmt = $connection->prepare($sql);
     $stmt->bindParam(':id', $this->id);
@@ -65,6 +66,7 @@ class Usuario extends Crud{
     $stmt->bindParam(':contrasena', $this->contrasena);
     $stmt->bindParam(':nombre', $this->nombre);
     $stmt->bindParam(':id_rol', $this->id_rol);
+    $stmt->bindParam(':limite', $this->limite);
 
     $stmt->execute();
     }
@@ -155,7 +157,7 @@ public function actualizarContrasena(){
             return false;
         }
         public function __toString() {
-            return "Usuario: [id={$this->id}, contrasena={$this->contrasena}, nombre_usuario={$this->nombre_usuario}, nombre={$this->nombre}, id_rol={$this->id_rol}]";
+            return "Usuario: [id={$this->id}, contrasena={$this->contrasena}, nombre_usuario={$this->nombre_usuario}, nombre={$this->nombre}, id_rol={$this->id_rol}, limite={$this->limite}]";
         }
 
         function datosUsuario($nombreUsuario){
@@ -173,10 +175,24 @@ public function actualizarContrasena(){
                 $usuario->contrasena = $result['contrasena'];
                 $usuario->nombre = $result['nombre'];
                 $usuario->id_rol = $result['id_rol'];
+                $usuario->limite = $result['limite'];
                 
                 return $usuario;
             } else {
                 return null; // Usuario no encontrado
             }
+        }
+
+        public function actualizaLimite($limite)
+        {
+        $connection = $this->conectar();
+
+        $sql = "UPDATE usuarios SET limite = :limite
+            WHERE id = :id";
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(':id', $this->id);
+        $stmt->bindParam(':limite', $limite);
+
+        $stmt->execute();
         }
 }

@@ -17,6 +17,7 @@ class ControladorPerfil{
         $usuario->nombre_usuario = $_POST['nombre_usuario'];
         $usuario->actualizarNombres();
         $_SESSION['usuario'] = serialize($usuario);
+        $_SESSION['user'] = $usuario->nombre_usuario;
 
 
         header('Location: /VirtualWalletSpending/perfil');

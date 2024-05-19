@@ -11,6 +11,10 @@ class ControladorDashboard{
     function abrirDashboard(){
         require_once 'modelos/Gastos.php';
         require_once 'modelos/Categoria.php';
+        require_once 'modelos/Usuario.php';
+
+        $usuarioLogin = unserialize($_SESSION['usuario']);
+
 
         $gastos = new Gastos();
         $datos_gastos = $gastos->datosGastos($_SESSION['user']); //lista de gastos del usuario
@@ -37,6 +41,7 @@ class ControladorDashboard{
 
         require_once 'vistas/dashboard.php';
     }
+
 
     function abrirDashboardAdmin(){
         require_once 'vistas/dashboardAdmin.php';
