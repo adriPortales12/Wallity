@@ -14,7 +14,7 @@ class controladorBorrarGasto{
         $gasto->borrar();
 
         $usuario = unserialize($_SESSION['usuario']);
-        header('Location: /VirtualWalletSpending/dashboard?filtro=' . $filtro . '&limite=' . $usuario->limite);
+        header('Location: ' . BASE_URL . 'dashboard?filtro=' . $filtro . '&limite=' . $usuario->limite);
 
     }
 }

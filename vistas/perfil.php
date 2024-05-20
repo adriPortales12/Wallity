@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perfil</title>
-    <link rel="stylesheet" href="\VirtualWalletSpending\vistas\estilos\dashboard.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>vistas\estilos\dashboard.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -13,8 +13,8 @@
             <h1>Perfil</h1>
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="/VirtualWalletSpending/dashboard?filtro=mes&limite=<?php echo $usuario->limite ?>">Volver al Dashboard</a></li>
-                    <li class="nav-item"><a id="logout" class="nav-link" href="/VirtualWalletSpending/logout">Cerrar sesión</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>dashboard?filtro=mes&limite=<?php echo $usuario->limite ?>">Volver al Dashboard</a></li>
+                    <li class="nav-item"><a id="logout" class="nav-link" href="<?php echo BASE_URL; ?>logout">Cerrar sesión</a></li> 
                 </ul>
             </nav>
         </div>
@@ -24,7 +24,7 @@
             <h2>Editar Perfil</h2>
             <div class="card">
                 <div class="card-body">
-                    <form id="cambioNombre" action="/VirtualWalletSpending/cambioNombres" method="post">
+                    <form id="cambioNombre" action="<?php echo BASE_URL; ?>cambioNombres" method="post">
                         <div class="mb-3">
                             <label for="nombre">Nombre:</label>
                             <input id="nombre" type="text" class="form-control" name="nombre" value="<?php echo $usuario->nombre; ?>">
@@ -40,7 +40,7 @@
 
             <div class="card mt-4">
                 <div class="card-body">
-                    <form id="cambioContrasena" action="/VirtualWalletSpending/cambioContrasena" method="post">
+                    <form id="cambioContrasena" action="<?php echo BASE_URL; ?>cambioContrasena" method="post">
                     <div class="mb-3">
                             <label for="nombre_usuario">Contraseña nueva:</label>
                             <input id="contrasena" type="password" class="form-control" name="contrasena">
@@ -55,7 +55,7 @@
             </div>
         </section>
     </main>
-    <script src="\VirtualWalletSpending\js\perfil.js"></script>
+    <script src="<?php echo BASE_URL; ?>js\perfil.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

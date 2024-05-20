@@ -20,7 +20,7 @@ class ControladorPerfil{
         $_SESSION['user'] = $usuario->nombre_usuario;
 
 
-        header('Location: /VirtualWalletSpending/perfil');
+        header('Location:' . BASE_URL . 'perfil');
     }
 
     function cambioContrasena(){
@@ -29,6 +29,6 @@ class ControladorPerfil{
         $usuario->actualizarContrasena();
         $_SESSION['usuario'] = serialize($usuario);
 
-        header('Location: /VirtualWalletSpending/perfil');
+        header('Location: ' . BASE_URL . 'perfil');
     }
 }

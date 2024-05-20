@@ -21,6 +21,6 @@ class ControladorConfiguracion{
 
         $_SESSION['usuario'] = serialize($usuario);
 
-        header('Location: /VirtualWalletSpending/configuracion');
+        header('Location: ' . BASE_URL . 'configuracion');
     }
 }

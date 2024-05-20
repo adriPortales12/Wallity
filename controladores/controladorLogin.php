@@ -27,18 +27,18 @@ class ControladorLogin{
             $_SESSION['usuario'] = serialize($usuarioLogin);
             //guarda en el usuario los datos y si es admin (rol 1) va a un dashboard y si no al otro (rol 2)
             if($usuarioLogin->id_rol==1){
-                header('Location: /VirtualWalletSpending/dashboardAdmin');
+                header('Location: ' . BASE_URL . 'dashboardAdmin');
             }else{
-                header('Location: /VirtualWalletSpending/dashboard?filtro=mes&limite=' . $usuarioLogin->limite);
+                header('Location: ' . BASE_URL . 'dashboard?filtro=mes&limite=' . $usuarioLogin->limite);
             }
         }else{
-            header('Location: /VirtualWalletSpending/?error=1');
+            header('Location: ' . BASE_URL . '?error=1');
         }
     }
     public function cerrarSesion(){
         session_unset(); // Eliminar todas las variables de sesión
         session_destroy(); // Destruir la sesión
-        header('Location: /VirtualWalletSpending/'); 
+        header('Location: ' . BASE_URL); 
     }
 
 }
