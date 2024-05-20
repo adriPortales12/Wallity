@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!confirmDelete) {
                 event.preventDefault();
             }
+            alert('Gasto borrado')
         });
     });
 
@@ -127,6 +128,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (totalGastos>limite) {
             alert('Has superado el límite de dinero, no debes gastar más')
+            gastosSumaElement.style.color = 'red';
+            gastosSumaElement.textContent += ' - Has superado el límite de dinero ('+limite+'€)';
         }
     }
 

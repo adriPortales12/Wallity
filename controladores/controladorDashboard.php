@@ -26,16 +26,19 @@ class ControladorDashboard{
             $datos_gastos_filtro = $gastos->gastosMes($_SESSION['user']); //la misma lista de gastos pero del ultimo mes
             $gastosSuma = $gastos->totalGastoMes($_SESSION['user']); //total dinero gastado en el mes
             $fecha_ultimo_filtro = date('d-M-Y', strtotime('-1 month'));
+            $datos_gastos_json = json_encode($datos_gastos_filtro);
 
         }elseif($_GET['filtro']=='anio'){
             $datos_gastos_filtro = $gastos->gastosAnio($_SESSION['user']);
             $gastosSuma = $gastos->totalGastoAnio($_SESSION['user']); //total dinero gastado en el mes
             $fecha_ultimo_filtro = date('d-M-Y', strtotime('-1 year'));
+            $datos_gastos_json = json_encode($datos_gastos_filtro);
 
         }elseif($_GET['filtro']=='dia'){
             $datos_gastos_filtro = $gastos->gastosDia($_SESSION['user']);
             $gastosSuma = $gastos->totalGastoDia($_SESSION['user']); //total dinero gastado en el mes
             $fecha_ultimo_filtro = date('d-M-Y', strtotime('-1 day'));
+            $datos_gastos_json = json_encode($datos_gastos_filtro);
         }
         
 
