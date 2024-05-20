@@ -15,7 +15,7 @@
             <p class="mb-0">Por favor, intenta con otro nombre de usuario.</p>
         </div>
         <div class="d-flex justify-content-center"> <!-- Agregamos clases para centrar horizontalmente -->
-            <a href="registro.php" class="btn btn-primary">Volver al registro</a>
+            <a href="../../registro" class="btn btn-primary">Volver al registro</a>
         </div>
     </div>
 

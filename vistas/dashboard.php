@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="\VirtualWalletSpending\vistas\estilos\dashboard.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>vistas\estilos\dashboard.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 </head>
 <body>
@@ -13,9 +13,9 @@
             <h1>Dashboard</h1>
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link" href="\VirtualWalletSpending\perfil">Perfil</a></li>
-                    <li class="nav-item"><a class="nav-link" href="\VirtualWalletSpending\configuracion">Configuración</a></li>
-                    <li class="nav-item"><a id="logout" class="nav-link" href="/VirtualWalletSpending/logout">Cerrar sesión</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>perfil">Perfil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>configuracion">Configuración</a></li>
+                    <li class="nav-item"><a id="logout" class="nav-link" href="<?php echo BASE_URL; ?>logout">Cerrar sesión</a></li> 
                 </ul>
             </nav>
         </div>
@@ -31,7 +31,7 @@
                     <p id="gastosSumaValue" class="card-text p-3"><?php echo (isset($gastosSuma[0]['total_gastos']) ? $gastosSuma[0]['total_gastos'] : 0) . '€ gastados desde ' . $fecha_ultimo_filtro; ?></p>
                 </div>
                 <div class="col-2 mb-3 mx-3">
-                    <form action="/VirtualWalletSpending/dashboard" method="get">
+                    <form action="<?php echo BASE_URL; ?>dashboard" method="get">
                         <div class="mb-3">
                             <label for="filtro" class="form-label">Filtrar por:</label>
                             <select class="form-control" id="filtro" name="filtro">
@@ -98,7 +98,7 @@
                             data-cantidad="<?php echo $gasto['cantidad']; ?>">
                             Modificar</button></td>
                         <td>
-                            <form method="post" action="/VirtualWalletSpending/borraGasto">
+                            <form method="post" action="<?php echo BASE_URL; ?>borraGasto">
                                 <input type="hidden" name="id" value="<?php echo $gasto['id']; ?>">
                                 <input type="hidden" name="filtro" value="<?php echo $_GET['filtro']; ?>">
                                 <button type="submit" class="borrar-btn btn btn-danger">Borrar</button>
@@ -141,7 +141,7 @@
                             data-cantidad="<?php echo $gasto['cantidad']; ?>">
                             Modificar</button></td>
                         <td>
-                            <form method="post" action="/VirtualWalletSpending/borraGasto">
+                            <form method="post" action="<?php echo BASE_URL; ?>borraGasto">
                                 <input type="hidden" name="id" value="<?php echo $gasto['id']; ?>">
                                 <input type="hidden" name="filtro" value="<?php echo $_GET['filtro']; ?>">
                                 <button type="submit" class="borrar-btn btn btn-danger">Borrar</button>
@@ -166,7 +166,7 @@
                 </div>
                 <div class="modal-body">
                     
-                <form id="formularioGasto" action="/VirtualWalletSpending/nuevoGasto" method="post">
+                <form id="formularioGasto" action="<?php echo BASE_URL; ?>nuevoGasto" method="post">
                     <input type="hidden" name="filtro" value=<?php echo $_GET['filtro'] ?> >
 
                     <div class="mb-3">
@@ -203,7 +203,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
                 </div>
                 <div class="modal-body">
-                    <form id="modificarGastoForm" action="/VirtualWalletSpending/modificaGasto" method="post">
+                    <form id="modificarGastoForm" action="<?php echo BASE_URL; ?>modificaGasto" method="post">
                         <input type="hidden" id="modificar-id" name="id">
                         <div class="mb-3">
                             <label for="modificar-titulo" class="form-label">Título:</label>
@@ -233,8 +233,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="\VirtualWalletSpending\js\dashboard.js"></script>
-    <script src="\VirtualWalletSpending\js\grafico.js"></script>
+    <script src="<?php echo BASE_URL; ?>js\dashboard.js"></script>
+    <script src="<?php echo BASE_URL; ?>js\grafico.js"></script>
     
 </body>
 </html>

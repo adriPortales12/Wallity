@@ -25,7 +25,7 @@ class ControladorNuevoGasto{
 
         $limite = $_POST['filtro'];
 
-        header('Location: /VirtualWalletSpending/dashboard?filtro=' . $limite . '&limite=' . $usuario->limite);
+        header('Location: ' . BASE_URL . 'dashboard?filtro=' . $limite . '&limite=' . $usuario->limite);
     }
 
 }

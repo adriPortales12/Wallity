@@ -7,92 +7,92 @@ spl_autoload_register(function ($class_name) {
 // Obtener la ruta solicitada
 $request_uri = explode('?', $_SERVER['REQUEST_URI'], 2);
 
-// Enrutamiento
+// Obtener la ruta base de forma dinámica
 $script_name = $_SERVER['SCRIPT_NAME'];
-$path_segments = explode('/', $script_name);
-$project_folder = $path_segments[1]; 
+$base_url = str_replace(basename($script_name), '', $script_name);
 
-$base_url = '/' . $project_folder;
-$route = str_replace($base_url, '', $request_uri[0]);
+// Eliminar la ruta base de la URI solicitada para obtener la ruta relativa
+$route = trim(str_replace($base_url, '', $request_uri[0]), '/');
 
+// Definir constante BASE_URL
 define('BASE_URL', $base_url);
 
 switch ($route) {
+    case '' :
     case '/' :
         $controller = new ControladorLogin();
         $controller->login();
         break;
 
-    case '/login':
+    case 'login':
         $controller = new ControladorLogin();
         $controller->verificarLogin();
         break;
 
-    case '/logout':
+    case 'logout':
         $controller = new ControladorLogin();
         $controller->cerrarSesion();
         break;
 
-    case '/registro':
+    case 'registro':
         $controller = new ControladorRegistro();
         $controller->registro();
         break;
 
-    case '/datosRegistro':
+    case 'datosRegistro':
         $controller = new ControladorRegistro();
         $controller->registrarUsuario();
         break;
 
-    case '/dashboard':
+    case 'dashboard':
         $controller = new ControladorDashboard();
         $controller->abrirDashboard();
         break;
 
-    case '/dashboardAdmin':
+    case 'dashboardAdmin':
         $controller = new ControladorDashboard();
         $controller->abrirDashboardAdmin();
         break;
 
-    case '/nuevoGasto':
+    case 'nuevoGasto':
         $controller = new ControladorNuevoGasto();
         $controller->nuevoGasto();
         break;
 
-    case '/perfil':
+    case 'perfil':
         $controller = new ControladorPerfil();
         $controller->abrirPerfil();
         break;
-    
-    case '/configuracion':
+
+    case 'configuracion':
         $controller = new ControladorConfiguracion();
         $controller->abrirConfiguracion();
         break;
 
-    case '/cambioNombres':
+    case 'cambioNombres':
         $controller = new ControladorPerfil();
         $controller->cambioNombres();
         break;
 
-    case '/cambioContrasena':
+    case 'cambioContrasena':
         $controller = new ControladorPerfil();
         $controller->cambioContrasena();
         break;
 
-    case '/borraGasto':
+    case 'borraGasto':
         $controller = new ControladorBorrarGasto();
         $controller->borrarGasto();
         break;
 
-    case '/modificaGasto':
+    case 'modificaGasto':
         $controller = new ControladorModificarGasto();
         $controller->modificarGasto();
         break;
-    
-    case '/editarLimite':
+
+    case 'editarLimite':
         $controller = new ControladorConfiguracion();
         $controller->nuevoLimite();
         break;
-
 
     default:
         header('HTTP/1.0 404 Not Found');
