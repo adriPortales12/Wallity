@@ -1,8 +1,10 @@
 <?php
 class controladorModificarGasto{
     function __construct(){
+        session_start();
         require_once 'modelos/Gastos.php';
         require_once 'modelos/Categoria.php';
+        require_once 'modelos/Usuario.php';
     }
 
     function modificarGasto(){
@@ -17,7 +19,9 @@ class controladorModificarGasto{
         $gasto->cantidad = $_POST['cantidad'];
 
         $gasto->actualizar();
+
+        $usuario = unserialize($_SESSION['usuario']);
         
-        header('Location: /VirtualWalletSpending/dashboard?filtro=' . $filtro);
+        header('Location: /VirtualWalletSpending/dashboard?filtro=' . $filtro . '&limite=' . $usuario->limite);
     }
 }

@@ -46,11 +46,16 @@
                 </div>
             </div>
         </div>
+        <input type="hidden" id="jsonDatos" value="<?php echo htmlspecialchars($datos_gastos_json, ENT_QUOTES, 'UTF-8') ?>"></input>
         <div class="col-md-6">
             <div class="card">
                 <div class="card-body">
-                <h3>Contenido:</h3>
-                    <p>contenido</p>
+                <h3>Gastos del <?php echo $_GET['filtro']=='anio' ? 'año' : $_GET['filtro'] ?>:</h3>
+                <?php if (!empty($datos_gastos_filtro)) : ?>
+                    <canvas id="grafico"></canvas>
+                <?php else : ?>
+                    <p>No hay ningún gasto.</p>
+                <?php endif; ?>
                 </div>
             </div>
         </div>
@@ -162,6 +167,8 @@
                 <div class="modal-body">
                     
                 <form id="formularioGasto" action="/VirtualWalletSpending/nuevoGasto" method="post">
+                    <input type="hidden" name="filtro" value=<?php echo $_GET['filtro'] ?> >
+
                     <div class="mb-3">
                         <label for="titulo" class="form-label">Titulo:</label>
                         <input type="text" class="form-control" id="titulo" name="titulo">
@@ -223,7 +230,11 @@
         </div>
     </div>
     </main>
-    <script src="\VirtualWalletSpending\js\dashboard.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="\VirtualWalletSpending\js\dashboard.js"></script>
+    <script src="\VirtualWalletSpending\js\grafico.js"></script>
+    
 </body>
 </html>
