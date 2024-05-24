@@ -139,6 +139,30 @@ class Gastos extends Crud {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    function gastosMesPasado($nombre_usuario){
+        $connection = $this->conectar();
+    
+        $primer_dia_mes_pasado = date('Y-m-01', strtotime('first day of last month'));
+        $ultimo_dia_mes_pasado = date('Y-m-t', strtotime('last day of last month'));
+    
+        $sql = "SELECT g.*, c.nombre AS nombre_categoria, DATE_FORMAT(g.fecha, '%d-%m-%Y') AS fecha_formateada 
+                FROM gastos g 
+                INNER JOIN usuarios u ON g.id_usuario = u.id 
+                INNER JOIN categorias c ON g.id_categoria = c.id
+                WHERE u.nombre_usuario = :nombre_usuario
+                AND g.fecha BETWEEN :primer_dia AND :ultimo_dia
+                ORDER BY g.fecha DESC";
+    
+        $stmt = $connection->prepare($sql);
+        $stmt->bindParam(':nombre_usuario', $nombre_usuario);
+        $stmt->bindParam(':primer_dia', $primer_dia_mes_pasado);
+        $stmt->bindParam(':ultimo_dia', $ultimo_dia_mes_pasado);
+        $stmt->execute();
+    
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+
     function totalGastoDia($nombre_usuario){
         $connection = $this->conectar();
     
