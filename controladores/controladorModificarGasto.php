@@ -22,6 +22,6 @@ class controladorModificarGasto{
 
         $usuario = unserialize($_SESSION['usuario']);
         
-        header('Location: ' . BASE_URL . 'dashboard?filtro=' . $filtro . '&limite=' . $usuario->limite);
+        header('Location: ' . BASE_URL . $_SESSION['ultimoDashboard'] . '?filtro=' . $filtro . '&limite=' . $usuario->limite);
     }
 }

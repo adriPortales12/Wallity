@@ -49,9 +49,9 @@ switch ($route) {
         $controller->abrirDashboard();
         break;
 
-    case 'dashboardAdmin':
+    case 'gastos':
         $controller = new ControladorDashboard();
-        $controller->abrirDashboardAdmin();
+        $controller->verGastos();
         break;
 
     case 'nuevoGasto':
@@ -92,6 +92,11 @@ switch ($route) {
     case 'editarLimite':
         $controller = new ControladorConfiguracion();
         $controller->nuevoLimite();
+        break;
+
+    case 'ultimoMes':
+        $controller = new ControladorUltimoMes();
+        $controller->verComparacion();
         break;
 
     default:
