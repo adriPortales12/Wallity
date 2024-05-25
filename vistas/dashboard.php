@@ -3,18 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>VirtualWalletSpending</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>vistas\estilos\dashboard.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
 </head>
 <body>
     <header class="py-3">
         <div class="container">
-            <h1>Dashboard</h1>
+            <h1>Inicio</h1>
             <nav>
                 <ul class="nav">
-                    <li class="nav-item"><a class="nav-link"
-                        href="<?php echo BASE_URL . 'gastos?filtro=' . $_GET['filtro'] . '&limite=' . $_GET['limite']?>">Gastos</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>perfil">Perfil</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo BASE_URL; ?>configuracion">Configuración</a></li>
                     <li class="nav-item"><a id="logout" class="nav-link" href="<?php echo BASE_URL; ?>logout">Cerrar sesión</a></li> 
@@ -49,15 +47,22 @@
             </div>
             <div class="card mt-5">
                 <div class="card-body">
-                    <h3 class="text-center">Más:</h3>
+                    <h3 class="text-center">Opciones:</h3>
+                    
+                    <div class="col-12 d-flex align-items-center justify-content-center">
+                        <a href="<?php echo BASE_URL . 'gastos?filtro=' . $_GET['filtro'] . '&limite=' . $_GET['limite']?>" class="btn btn-primary mt-3">Ver Gastos</a>
+                    </div>
+
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <button id="openPopupBtn" class="btn btn-primary mt-3 nuevoGasto">Añadir Gasto</button>
                     </div>
+
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <form action="<?php echo BASE_URL; ?>ultimoMes" method="post">
-                            <button type="submit" class="btn btn-primary mt-3">Ultimo Mes</button>
+                            <button type="submit" class="btn btn-primary mt-3">Comparar con el último Mes</button>
                         </form>
                     </div>
+                    
                 </div>
             </div>
         </div>
