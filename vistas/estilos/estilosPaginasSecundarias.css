@@ -1,0 +1,114 @@
+body {
+    background-color: #1c1e21; /* Fondo gris oscuro */
+    font-family: 'Roboto', sans-serif; /* Fuente mejorada */
+    color: #ffffff; /* Texto blanco */
+}
+
+.header-container {
+    background-color: #343a40; /* Color de fondo del header */
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 2.5em; /* Tamaño de fuente más grande */
+    margin: 0;
+    color: #ffffff; /* Color blanco para el título del header */
+}
+
+.nav-link {
+    color: #ffffff !important;
+    font-size: 1.2em; /* Tamaño de fuente más grande */
+}
+
+.nav-link:hover {
+    color: #adb5bd !important; /* Color de enlace al pasar el mouse */
+}
+
+.card {
+    background-color: #2d3035; /* Fondo de las tarjetas */
+    color: #ffffff; /* Color del texto de las tarjetas */
+    border: 1px solid #444950; /* Borde de las tarjetas */
+    border-radius: 10px; /* Bordes redondeados para las tarjetas */
+    margin-bottom: 20px;
+}
+
+.card h3, .card p, .card h2, .card table {
+    color: #ffffff; /* Color blanco para los títulos y el texto */
+}
+
+.table {
+    color: #ffffff; /* Color blanco para el texto de la tabla */
+}
+
+.table thead th {
+    color: #ffffff; /* Color blanco para los encabezados de la tabla */
+}
+
+.table tbody td {
+    color: #ffffff; /* Color blanco para las celdas de la tabla */
+}
+
+.table tbody tr:nth-child(even) td {
+    background-color: #343a40; /* Fondo alternativo para las filas pares */
+}
+
+.table tbody tr td {
+    color: #ffffff !important; /* Asegura que el texto de todas las celdas sea blanco */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em; /* Tamaño de fuente más grande */
+    transition: background-color 0.3s ease; /* Transición para el color de fondo */
+    color: #ffffff; /* Color blanco para el texto del botón */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    color: #ffffff; /* Color blanco para el texto del botón al pasar el mouse */
+}
+
+.modal-content {
+    background-color: #2d3035;
+    color: #ffffff;
+    border-radius: 10px; /* Bordes redondeados para el modal */
+    border: 1px solid #444950;
+}
+
+.modal-header, .modal-footer {
+    border-color: #444950;
+    color: #ffffff; /* Color blanco para el texto del modal */
+}
+
+.form-control {
+    background-color: #3a3f44;
+    border: 1px solid #495057;
+    color: #ffffff; /* Color blanco para el texto de los campos de formulario */
+}
+
+.form-control:focus {
+    background-color: #3a3f44;
+    border-color: #007bff;
+    color: #ffffff; /* Color blanco para el texto de los campos de formulario en foco */
+}
+
+::placeholder { /* Placeholder text color */
+    color: #adb5bd;
+    opacity: 1; /* Override iOS/WebKit's default opacity */
+}
+
+.form-control::placeholder {
+    color: #adb5bd; /* Color del placeholder */
+}
+
+.option, select {
+    color: #ffffff; /* Color del texto de las opciones y del select */
+    background-color: #3a3f44; /* Fondo del select y opciones */
+}
+
+.line-divider {
+    border-top: 1px solid #444950;
+    margin: 20px 0;
+}

@@ -6,6 +6,7 @@
     <title>VirtualWalletSpending</title>
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>vistas\estilos\dashboard.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vistas/estilos/estilosPaginasSecundarias.css">
 </head>
 <body>
     <header class="py-3">
@@ -38,7 +39,5 @@
     </main>
     <script src="<?php echo BASE_URL; ?>js\configuracion.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
