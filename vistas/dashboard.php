@@ -28,7 +28,8 @@
             <div class="card">
                 <div class="card-body">
                     <h3>Gastos del <?php echo $_GET['filtro']=='anio' ? 'año' : $_GET['filtro'] ?>:</h3>
-                    <p id="gastosSumaValue" class="card-text p-3"><?php echo (isset($gastosSuma[0]['total_gastos']) ? $gastosSuma[0]['total_gastos'] : 0) . '€ gastados desde ' . $fecha_ultimo_filtro; ?></p>
+                    <h4 id="gastosSumaValue" class="card-text p-3"><?php echo (isset($gastosSuma[0]['total_gastos']) ? $gastosSuma[0]['total_gastos'] : 0)?>€</h4>
+                    <p> <?php echo 'desde ' . $fecha_ultimo_filtro; ?></p>
                 </div>
                 <div class="col-2 mb-3 mx-3">
                     <form action="<?php echo BASE_URL; ?>dashboard" method="get">
@@ -125,6 +126,7 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?php echo BASE_URL; ?>js\dashboard.js"></script>
     <script src="<?php echo BASE_URL; ?>js\grafico.js"></script>
     
