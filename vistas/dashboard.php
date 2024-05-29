@@ -70,10 +70,14 @@
                         </div>
                     </div>
                 </div>
+
                 
                 <input type="hidden" id="jsonDatos" value="<?php echo htmlspecialchars($datos_gastos_json, ENT_QUOTES, 'UTF-8') ?>"></input>
                 <div class="col-md-6">
                     <div class="card grafico">
+                <input type="hidden" id="jsonDatos" value="<?php echo htmlspecialchars($datos_gastos_json, ENT_QUOTES, 'UTF-8') ?>"></input>
+                <div class="col-md-6">
+                    <div class="card">
                         <div class="card-body">
                         <h3>Gastos del <?php echo $_GET['filtro']=='anio' ? 'año' : $_GET['filtro'] ?>:</h3>
                         <?php if (!empty($datos_gastos_filtro)) : ?>

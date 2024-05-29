@@ -1,3 +1,4 @@
+
 body {
     background-color: #1c1e21; /* Fondo gris oscuro */
     font-family: 'Roboto', sans-serif; /* Fuente mejorada */
@@ -69,9 +70,4 @@ header h1 {
     background-color: #3a3f44;
     border-color: #007bff;
     color: #ffffff;
-}
-
-.line-divider {
-    border-top: 1px solid #444950;
-    margin: 20px 0;
 }

@@ -85,8 +85,9 @@ body {
     text-decoration: underline;
 }
 
-.login-container ::placeholder{
-    color: rgba(255, 255, 255, 0.20);
+
+.login-container input::placeholder{
+    color: rgba(255, 255, 255, 0.2);
 }
 
 #error {
