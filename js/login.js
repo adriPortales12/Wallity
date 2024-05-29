@@ -1,4 +1,3 @@
-
 // si no se ha encontrado un usuario en el controlador de login, vuelve con un error en el get, este lo busca y manda el mensaje de error
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.has('error') && urlParams.get('error') === '1') {
@@ -8,7 +7,7 @@ if (urlParams.has('error') && urlParams.get('error') === '1') {
 
     // Reemplazar la URL en el historial del navegador sin el parámetro GET para que al recargar no siga saliendo el error
     history.replaceState(null, null, urlSinGET);
-}   
+}
 
 document.getElementById("formularioLogin").addEventListener("submit", function(event) {
 
@@ -17,23 +16,13 @@ document.getElementById("formularioLogin").addEventListener("submit", function(e
 
 
     if (nombre.trim() === "") {
-        Swal.fire({
-            title: 'Error',
-            text: 'No veo ningún nombre',
-            icon: 'error',
-            confirmButtonText: 'Entendido'
-        });
+        alert("El nombre no puede estar vacío");
         event.preventDefault(); 
         return;
     }
 
     if (contrasena.trim() === "") {
-        Swal.fire({
-            title: 'Error',
-            text: 'Se te ha olvidado la contraseña',
-            icon: 'error',
-            confirmButtonText: '¡Vale!'
-        });
+        alert("La contraseña no puede estar vacía");
         event.preventDefault(); 
         return;
     }
