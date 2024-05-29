@@ -122,7 +122,7 @@ public function actualizarContrasena(){
         $count = $result['count'];
 
         // Verifica si se encontró exactamente un usuario con el nombre dado
-        if ($count === 1) {
+        if ($count == 1) {
             // Consulta para obtener la contrasena almacenada para el usuario dado
             $sql = "SELECT contrasena FROM usuarios WHERE nombre_usuario = :usuario";
             $stmt = $connection->prepare($sql);
