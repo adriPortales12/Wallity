@@ -7,85 +7,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>vistas/estilos/dashboard.css">
-    <style>
-        body {
-            background-color: #1c1e21; /* Fondo gris oscuro */
-            font-family: 'Roboto', sans-serif; /* Fuente mejorada */
-            color: #ffffff; /* Texto blanco */
-        }
-
-        .header-container {
-            background-color: #343a40; /* Color de fondo del header */
-            padding: 20px;
-        }
-
-        header h1 {
-            font-size: 2.5em; /* Tamaño de fuente más grande */
-            margin: 0;
-            color: #ffffff; /* Color blanco para el título del header */
-        }
-
-        .nav-link {
-            color: #ffffff !important;
-            font-size: 1.2em; /* Tamaño de fuente más grande */
-        }
-
-        .nav-link:hover {
-            color: #adb5bd !important; /* Color de enlace al pasar el mouse */
-        }
-
-        .card {
-            background-color: #2d3035; /* Fondo de las tarjetas */
-            color: #ffffff; /* Color del texto de las tarjetas */
-            border: 1px solid #444950; /* Borde de las tarjetas */
-            border-radius: 10px; /* Bordes redondeados para las tarjetas */
-            margin-bottom: 20px;
-        }
-
-        .card h3, .card p {
-            color: #ffffff; /* Color blanco para los títulos */
-        }
-
-        .btn-primary {
-            background-color: #007bff;
-            border: none;
-            padding: 10px 20px;
-            font-size: 1.2em; /* Tamaño de fuente más grande */
-            transition: background-color 0.3s ease; /* Transición para el color de fondo */
-        }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-        }
-
-        .modal-content {
-            background-color: #2d3035;
-            color: #ffffff;
-            border-radius: 10px; /* Bordes redondeados para el modal */
-            border: 1px solid #444950;
-        }
-
-        .modal-header, .modal-footer {
-            border-color: #444950;
-        }
-
-        .form-control {
-            background-color: #3a3f44;
-            border: 1px solid #495057;
-            color: #ffffff;
-        }
-
-        .form-control:focus {
-            background-color: #3a3f44;
-            border-color: #007bff;
-            color: #ffffff;
-        }
-        
-        .line-divider {
-            border-top: 1px solid #444950;
-            margin: 20px 0;
-        }
-    </style>
 </head>
 <body>
     <header class="header-container">
@@ -149,7 +70,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="line-divider"></div>
+
+                
+                <input type="hidden" id="jsonDatos" value="<?php echo htmlspecialchars($datos_gastos_json, ENT_QUOTES, 'UTF-8') ?>"></input>
+                <div class="col-md-6">
+                    <div class="card grafico">
                 <input type="hidden" id="jsonDatos" value="<?php echo htmlspecialchars($datos_gastos_json, ENT_QUOTES, 'UTF-8') ?>"></input>
                 <div class="col-md-6">
                     <div class="card">
@@ -205,6 +130,7 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="<?php echo BASE_URL; ?>js/dashboard.js"></script>
     <script src="<?php echo BASE_URL; ?>js/grafico.js"></script>
 </body>

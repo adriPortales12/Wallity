@@ -1,0 +1,73 @@
+
+body {
+    background-color: #1c1e21; /* Fondo gris oscuro */
+    font-family: 'Roboto', sans-serif; /* Fuente mejorada */
+    color: #ffffff; /* Texto blanco */
+}
+
+.header-container {
+    background-color: #343a40; /* Color de fondo del header */
+    padding: 20px;
+}
+
+header h1 {
+    font-size: 2.5em; /* Tamaño de fuente más grande */
+    margin: 0;
+    color: #ffffff; /* Color blanco para el título del header */
+}
+
+.nav-link {
+    color: #ffffff !important;
+    font-size: 1.2em; /* Tamaño de fuente más grande */
+}
+
+.nav-link:hover {
+    color: #adb5bd !important; /* Color de enlace al pasar el mouse */
+}
+
+.card {
+    background-color: #2d3035; /* Fondo de las tarjetas */
+    color: #ffffff; /* Color del texto de las tarjetas */
+    border: 1px solid #444950; /* Borde de las tarjetas */
+    border-radius: 10px; /* Bordes redondeados para las tarjetas */
+    margin-bottom: 20px;
+}
+
+.card h3, .card p {
+    color: #ffffff; /* Color blanco para los títulos */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2em; /* Tamaño de fuente más grande */
+    transition: background-color 0.3s ease; /* Transición para el color de fondo */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.modal-content {
+    background-color: #2d3035;
+    color: #ffffff;
+    border-radius: 10px; /* Bordes redondeados para el modal */
+    border: 1px solid #444950;
+}
+
+.modal-header, .modal-footer {
+    border-color: #444950;
+}
+
+.form-control {
+    background-color: #3a3f44;
+    border: 1px solid #495057;
+    color: #ffffff;
+}
+
+.form-control:focus {
+    background-color: #3a3f44;
+    border-color: #007bff;
+    color: #ffffff;
+}
