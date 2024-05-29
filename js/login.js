@@ -2,7 +2,12 @@
 // si no se ha encontrado un usuario en el controlador de login, vuelve con un error en el get, este lo busca y manda el mensaje de error
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.has('error') && urlParams.get('error') === '1') {
-    alert('el usuario no se ha encontrado');
+    Swal.fire({
+        title: 'Vaya...',
+        text: 'No encuentro el usuario',
+        icon: 'error',
+        confirmButtonText: 'Entendido'
+    });
     // Obtener la URL actual sin el parámetro GET
     let urlSinGET = window.location.origin + window.location.pathname;
 
