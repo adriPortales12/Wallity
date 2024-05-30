@@ -31,7 +31,7 @@ class Usuario extends Crud{
     public function crear() {
         try {
             $connection = $this->conectar();
-
+    
             $sql = "INSERT INTO usuarios (nombre_usuario, contrasena, nombre, id_rol)
                     VALUES (:nombre_usuario, :contrasena, :nombre, :id_rol)";
             $stmt = $connection->prepare($sql);
@@ -39,12 +39,14 @@ class Usuario extends Crud{
             $stmt->bindParam(':contrasena', $this->contrasena);
             $stmt->bindParam(':nombre', $this->nombre);
             $stmt->bindParam(':id_rol', $this->id_rol);
-
+    
             $stmt->execute();
+    
         } catch (PDOException $e) {
             echo "PDO Error: " . $e->getMessage();
         }
     }
+
     public function borrar()
     {
         $connection = $this->conectar();
@@ -122,7 +124,7 @@ public function actualizarContrasena(){
         $count = $result['count'];
 
         // Verifica si se encontró exactamente un usuario con el nombre dado
-        if ($count === 1) {
+        if ($count == 1) {
             // Consulta para obtener la contrasena almacenada para el usuario dado
             $sql = "SELECT contrasena FROM usuarios WHERE nombre_usuario = :usuario";
             $stmt = $connection->prepare($sql);
