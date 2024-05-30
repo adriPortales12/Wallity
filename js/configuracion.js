@@ -61,4 +61,6 @@ document.addEventListener('DOMContentLoaded', function () {
         return validacion.test(cantidad.trim());
     }
 
+    
+
 });

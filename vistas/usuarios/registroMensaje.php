@@ -18,7 +18,7 @@
             <p class="mb-0">Gracias por registrarte en nuestro sitio. Ahora puedes iniciar sesión.</p>
         </div>
         <div class="d-flex justify-content-center"> <!-- Agregamos clases para centrar horizontalmente -->
-            <a href="../../" class="btn btn-primary">Ir al login</a>
+            <a href=<?php echo BASE_URL; ?> class="btn btn-primary">Ir al login</a>
         </div>
     </div>
     

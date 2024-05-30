@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
     avisoLimite();
+    avisoLimite2();
+
 
 
     const openPopupBtn = document.getElementById('openPopupBtn');
@@ -109,8 +111,101 @@ document.addEventListener('DOMContentLoaded', function () {
                 confirmButtonText: 'Entendido'
             });
             gastosSumaElement.style.color = 'red';
-            gastosSumaElement.textContent += ' - Has superado el límite de dinero (' + limite + '€)';
+            gastosSumaElement.textContent += ' - Has superado el límite de dinero total (' + limite + '€)';
         }
     }
+
+    function avisoLimite2() {
+        // Obtener los límites de cada categoría
+        let limiteComida = parseFloat(document.querySelector('input[name="limite_comida"]').value);
+        let limiteHogar = parseFloat(document.querySelector('input[name="limite_hogar"]').value);
+        let limiteRopa = parseFloat(document.querySelector('input[name="limite_ropa"]').value);
+        let limiteJuegos = parseFloat(document.querySelector('input[name="limite_juegos"]').value);
+        let limiteViajes = parseFloat(document.querySelector('input[name="limite_viajes"]').value);
+        let limiteOtros = parseFloat(document.querySelector('input[name="limite_otros"]').value);
+    
+        // Obtener los datos de gastos por categoría del gráfico
+        const categorias = [];
+        const dineroPorCategoria = {};
+
+        
+    
+        // Iterar sobre cada objeto en los datos
+        datos.forEach(elemento => {
+            const categoria = elemento.nombre_categoria;
+            const cantidad = parseFloat(elemento.cantidad); // Convertir la cantidad a número flotante
+            
+            // Verificar si la categoría ya está en el array
+            if (!categorias.includes(categoria)) {
+                categorias.push(categoria);
+                dineroPorCategoria[categoria] = cantidad; // Inicializar el gasto para esta categoría
+            } else {
+                dineroPorCategoria[categoria] += cantidad; // Sumar el gasto para esta categoría
+            }
+        });
+        console.log(categorias)
+    
+        // Array para almacenar las categorías en las que se ha superado el límite
+        const categoriasSuperadas = [];
+        
+        // Iterar sobre las categorías y comparar los gastos con los límites correspondientes
+        categorias.forEach(categoria => {
+            const gastoCategoria = dineroPorCategoria[categoria];
+            switch (categoria) {
+                case 'comida':
+                    if (gastoCategoria > limiteComida) {
+                        categoriasSuperadas.push('Comida');
+                    }
+                    break;
+                case 'hogar':
+                    if (gastoCategoria > limiteHogar) {
+                        categoriasSuperadas.push('Hogar');
+                    }
+                    break;
+                case 'ropa':
+                    if (gastoCategoria > limiteRopa) {
+                        categoriasSuperadas.push('Ropa');
+                    }
+                    break;
+                case 'Juegos':
+                    if (gastoCategoria > limiteJuegos) {
+                        categoriasSuperadas.push('Juegos');
+                    }
+                    break;
+                case 'Viajes':
+                    if (gastoCategoria > limiteViajes) {
+                        categoriasSuperadas.push('Viajes');
+                    }
+                    break;
+                case 'Otros':
+                    if (gastoCategoria > limiteOtros) {
+                        categoriasSuperadas.push('Otros');
+                    }
+                    break;
+                default:
+                    break;
+            }
+        });
+    
+        // Si hay categorías superadas, mostrar la notificación
+        if (categoriasSuperadas.length > 0) {
+            const mensaje = `Has superado el límite de gastos en las siguientes categorías: ${categoriasSuperadas.join(', ')}`;
+            mostrarNotificacion(mensaje);
+        }
+    }
+    
+    // Funciones mostrarNotificacion y marcarLimiteSuperado no cambian y se mantienen como en el ejemplo anterior
+    
+    
+    function mostrarNotificacion(mensaje) {
+        Swal.fire({
+            title: 'Vaya...',
+            text: mensaje,
+            icon: 'warning',
+            confirmButtonText: 'Entendido'
+        });
+    }
+
+    
 
 });

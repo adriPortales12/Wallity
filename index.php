@@ -39,6 +39,15 @@ switch ($route) {
         $controller->registro();
         break;
 
+    case 'registroOK':
+        $controller = new ControladorRegistro();
+        $controller->registroOK();
+        break;
+
+    case 'registroKO':
+        $controller = new ControladorRegistro();
+        $controller->registroKO();
+        break;
     case 'datosRegistro':
         $controller = new ControladorRegistro();
         $controller->registrarUsuario();
@@ -92,6 +101,11 @@ switch ($route) {
     case 'editarLimite':
         $controller = new ControladorConfiguracion();
         $controller->nuevoLimite();
+        break;
+
+    case 'editarLimite2':
+        $controller = new ControladorConfiguracion();
+        $controller->nuevoLimite2();
         break;
 
     case 'ultimoMes':

@@ -12,10 +12,15 @@ class ControladorDashboard{
         require_once 'modelos/Gastos.php';
         require_once 'modelos/Categoria.php';
         require_once 'modelos/Usuario.php';
+        require_once 'modelos/Notificacion.php';
 
         $_SESSION['ultimoDashboard'] = 'dashboard';
 
         $usuarioLogin = unserialize($_SESSION['usuario']);
+
+        $notificacion = new Notificacion();
+        $notificacion->id_usuario = $usuarioLogin->id;
+        $limites = $notificacion->datosNotificaciones();
 
 
         $gastos = new Gastos();

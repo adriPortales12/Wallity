@@ -31,7 +31,7 @@ class Usuario extends Crud{
     public function crear() {
         try {
             $connection = $this->conectar();
-
+    
             $sql = "INSERT INTO usuarios (nombre_usuario, contrasena, nombre, id_rol)
                     VALUES (:nombre_usuario, :contrasena, :nombre, :id_rol)";
             $stmt = $connection->prepare($sql);
@@ -39,12 +39,14 @@ class Usuario extends Crud{
             $stmt->bindParam(':contrasena', $this->contrasena);
             $stmt->bindParam(':nombre', $this->nombre);
             $stmt->bindParam(':id_rol', $this->id_rol);
-
+    
             $stmt->execute();
+    
         } catch (PDOException $e) {
             echo "PDO Error: " . $e->getMessage();
         }
     }
+
     public function borrar()
     {
         $connection = $this->conectar();
