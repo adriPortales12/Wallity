@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="<?php echo BASE_URL; ?>vistas/estilos/dashboard.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="vistas/estilos/estilosPaginasSecundarias.css">
-    <style>
-        .highlight-positive { background-color: #a94442; color: #ffffff !important; }
-        .highlight-negative { background-color: #d4edda; color: #000000 !important; }
-    </style>
 </head>
 <body>
     <header class="py-3">
