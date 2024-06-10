@@ -67,11 +67,6 @@ header h1 {
     /* Color blanco para las celdas de la tabla */
 }
 
-.table tbody tr:nth-child(even) td {
-    background-color: #343a40;
-    /* Fondo alternativo para las filas pares */
-}
-
 .table tbody tr td {
     color: #ffffff !important;
     /* Asegura que el texto de todas las celdas sea blanco */
@@ -153,12 +148,25 @@ select {
     border-bottom: 1px solid #dee2e6;
     margin-bottom: 2rem;
 }
+
 .card-half {
     flex: 1;
     margin: 0 1rem;
 }
 
 .card-separator-first {
-    border-bottom: 1px solid #ccc; /* Cambia el color y el estilo según tu diseño */
-    margin-bottom: 20px; /* Ajusta el margen inferior según sea necesario */
+    border-bottom: 1px solid #ccc;
+    /* Cambia el color y el estilo según tu diseño */
+    margin-bottom: 20px;
+    /* Ajusta el margen inferior según sea necesario */
+}
+
+.highlight-positive {
+    background-color: #CE0000 !important;
+    color: #721c24 !important;
+}
+
+.highlight-negative {
+    background-color: #0ab031 !important;
+    color: #155724 !important;
 }
