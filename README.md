@@ -1,5 +1,3 @@
-ANTEPROYECTO TFG
-
 Nombre del Proyecto:
 Wallity
 
