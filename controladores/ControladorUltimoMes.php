@@ -3,6 +3,9 @@ class ControladorUltimoMes {
 
     function __construct() {
         session_start();
+        if(!isset($_SESSION['usuario'])){
+            header('Location: ' . BASE_URL);
+        }
         require_once 'modelos/Gastos.php';
         require_once 'modelos/Usuario.php';
         require_once 'modelos/Categoria.php';
