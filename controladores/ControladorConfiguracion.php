@@ -4,8 +4,11 @@ class ControladorConfiguracion
 {
     public function __construct()
     {
-        require_once 'modelos/Usuario.php';
         session_start();
+        if(!isset($_SESSION['usuario'])){
+            header('Location: ' . BASE_URL);
+        }
+        require_once 'modelos/Usuario.php';
     }
 
     function abrirConfiguracion()
